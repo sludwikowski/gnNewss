@@ -1,7 +1,24 @@
-import React from 'react'
+import { List, ListItem, ListItemText } from '@mui/material'
+import { NewsArticle } from '../typings'
 
-function NewsCard() {
-  return <div>News List</div>
+interface NewsListProps {
+  news: NewsArticle[]
 }
 
-export default NewsCard
+export default function NewsList({ news }: NewsListProps) {
+  if (!news) {
+    return null
+  }
+  return (
+    <List>
+      {news.map((article: NewsArticle) => (
+        <ListItem key={article.url} alignItems="flex-start">
+          <ListItemText
+            primary={<a href={article.url}>{article.title}</a>}
+            secondary={`${article.source.name}, ${article.publishedAt}`}
+          />
+        </ListItem>
+      ))}
+    </List>
+  )
+}

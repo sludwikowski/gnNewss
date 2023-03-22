@@ -6,7 +6,7 @@ function App() {
   return (
     <Routes>
       <Route path={'/'} element={<MainLayout />}>
-        <Route path="/country/:country" element={<NewsContent />} />
+        <Route path="/" element={<NewsContent />} />
       </Route>
     </Routes>
   )

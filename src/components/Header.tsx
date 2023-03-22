@@ -1,8 +1,10 @@
+import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { AppBar, Box, Typography } from '@mui/material'
 
 import Popup from './Popup'
+import Menu from './Menu'
 
 export default function Header() {
   const navigate = useNavigate()
@@ -32,6 +34,7 @@ export default function Header() {
           margin: 'auto',
         }}
       >
+        <Menu />
         <Box
           onClick={() => navigate('/')}
           sx={{ '&:hover': { cursor: 'pointer' } }}

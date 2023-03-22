@@ -1,18 +1,21 @@
 import { Outlet } from 'react-router-dom'
 
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Banner from '../components/Banner'
 
 export default function MainLayout() {
   return (
     <>
       <Box>
         <Header />
-        <Box>
+        <Banner />
+        <Container sx={{ py: 12 }} maxWidth="lg">
           <Outlet />
-        </Box>
-        {/*<Footer/>*/}
+        </Container>
+        <Footer description={'gnNews'} title={'task'} />
       </Box>
     </>
   )

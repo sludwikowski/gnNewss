@@ -6,7 +6,7 @@ import { NewsArticle } from '../typings'
 
 import { RootState } from '../app/store'
 
-import NewsTile from './NewsTile'
+import NewsTileList from './NewsTileList'
 import NewsList from './NewsList'
 import Loader from './Loader'
 
@@ -41,7 +41,7 @@ export default function NewsContent() {
     } else if (view === 'list') {
       return <NewsList news={news} />
     } else {
-      return <NewsTile news={news} />
+      return <NewsTileList news={news} />
     }
   }
 

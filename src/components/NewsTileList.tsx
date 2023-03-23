@@ -7,7 +7,7 @@ interface NewsTileProps {
   news: NewsArticle[]
 }
 
-export default function NewsTile({ news }: NewsTileProps) {
+export default function NewsTileList({ news }: NewsTileProps) {
   const [page, setPage] = useState(1)
   const articlesPerPage = 12
 

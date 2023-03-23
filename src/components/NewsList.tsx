@@ -1,9 +1,12 @@
 import {
   Link,
+  Button,
+  Box,
   List,
   ListItem,
   ListItemText,
   Pagination,
+  Typography,
 } from '@mui/material'
 import { NewsArticle } from '../typings'
 import { useState } from 'react'
@@ -16,8 +19,14 @@ interface NewsListProps {
 
 export default function NewsList({ news }: NewsListProps) {
   const [page, setPage] = useState(1)
+  const [selectedArticle, setSelectedArticle] =
+    useState<NewsArticle | null>(null)
   const articlesPerPage = 10
   const numPages = Math.ceil(news.length / articlesPerPage)
+
+  const handleArticleClick = (article: NewsArticle) => {
+    setSelectedArticle(article)
+  }
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -39,13 +48,24 @@ export default function NewsList({ news }: NewsListProps) {
             <ListItem key={article.url} alignItems="flex-start">
               <ListItemText
                 primary={
-                  <Link color="secondary" href={article.url}>
+                  <Box
+                    component={Typography}
+                    variant="h5"
+                    fontWeight={'bold'}
+                    color="secondary"
+                    sx={{ cursor: 'pointer' }}
+                    onClick={() => handleArticleClick(article)}
+                  >
                     {article.title}
-                  </Link>
+                  </Box>
                 }
-                secondary={`${article.source.name}, ${article.publishedAt}`}
+                secondary={`${article.source.name},  ${article.publishedAt}`}
               />
-              {/*<ArticlePopup visible={article} onClose={} article={}/>*/}
+              <ArticlePopup
+                visible={selectedArticle !== null}
+                onClose={() => setSelectedArticle(null)}
+                article={selectedArticle}
+              />
             </ListItem>
           ))}
       </List>

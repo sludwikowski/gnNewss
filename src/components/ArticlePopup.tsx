@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Link,
   Typography,
 } from '@mui/material'
 
@@ -27,8 +28,12 @@ function ArticlePopup({ visible, onClose, article }: PopupProps) {
       <DialogContent>
         <Typography>Author: {author || 'Unknown'}</Typography>
         <Typography>
-          Source: <a href={url}>{source.name}</a>
+          Source: <Link href={url}>{source.name}</Link>
         </Typography>
+        <Typography>
+          SourceLink: <Link href={url}>{url}</Link>
+        </Typography>
+
         <Typography>{description}</Typography>
       </DialogContent>
       <DialogActions>

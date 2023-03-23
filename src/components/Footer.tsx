@@ -8,15 +8,6 @@ import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import { setArticleCount, fetchNews } from '../features/newsSlice'
 
-function CurrentTime() {
-  const now = new Date()
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      Current time: {now.toLocaleTimeString()}
-    </Typography>
-  )
-}
-
 interface FooterProps {
   description: string
   title: string
@@ -24,6 +15,7 @@ interface FooterProps {
 
 export default function Footer(props: FooterProps) {
   const { description, title } = props
+  const [currentTime, setCurrentTime] = useState(new Date())
   const dispatch = useDispatch()
   const articleCount = useSelector(
     (state: RootState) => state.news.articleCount
@@ -46,6 +38,13 @@ export default function Footer(props: FooterProps) {
     fetchArticleCount()
   }, [dispatch])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <Box
       component={Paper}
@@ -64,7 +63,14 @@ export default function Footer(props: FooterProps) {
         >
           Number of articles: {articleCount}
         </Typography>
-        <CurrentTime />
+        <Typography
+          variant="body2"
+          align="center"
+          color="text.secondary"
+          gutterBottom
+        >
+          Current time: {currentTime.toLocaleTimeString()}
+        </Typography>
       </Container>
     </Box>
   )

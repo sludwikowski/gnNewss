@@ -33,10 +33,11 @@ export default function Popup() {
   const popupContent = (
     <>
       <DialogContentText>
-        The most difficult part of this task was ...
+        Największą trudność miałem z ...
       </DialogContentText>
       <DialogContentText>
-        The most fun part of this task was ...
+        Największą frajdę sprawiło mi szukanie rozwiązań napotykanych
+        problemów.
       </DialogContentText>
     </>
   )
@@ -62,7 +63,7 @@ export default function Popup() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {'Difficulties and Fun'}
+          {'Frajda i Problemy'}
         </DialogTitle>
         <DialogContent>{popupContent}</DialogContent>
         <DialogActions>

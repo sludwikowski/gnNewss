@@ -10,7 +10,6 @@ import {
 } from '@mui/material'
 import { NewsArticle } from '../typings'
 import { useState } from 'react'
-import { Article } from '@mui/icons-material'
 import ArticlePopup from './ArticlePopup'
 
 interface NewsListProps {

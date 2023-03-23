@@ -6,38 +6,44 @@ import { NewsArticle } from '../typings'
 
 import { RootState } from '../app/store'
 
-import NewsTitle from './NewsTitle.'
+import NewsTile from './NewsTile'
 import NewsList from './NewsList'
 import Loader from './Loader'
 
 export default function NewsContent() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoadingNews, setLoadingNews] = useState<boolean>(false)
   const view = useSelector((state: RootState) => state.news.view)
   const [news, setNews] = useState<Array<NewsArticle>>([])
   const { country } = useParams()
   const APP_KEY = import.meta.env.VITE_APP_KEY
-  useEffect(() => {
-    setIsLoading(true)
-    fetch(
-      `https://newsapi.org/v2/top-headlines?country=pl&apiKey=${APP_KEY}`
-    )
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log(data)
-        setNews(data.articles)
-        setIsLoading(false)
-        return data
-      })
-      .catch(console.error)
-  }, [country])
 
-  return isLoading ? (
-    <Loader />
-  ) : view === 'list' ? (
-    <NewsList news={news} />
-  ) : (
-    <NewsTitle news={news} />
-  )
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        setLoadingNews(true)
+        const response = await fetch(
+          `https://newsapi.org/v2/top-headlines?country=pl&pageSize=30&apiKey=${APP_KEY}`
+        )
+        const data = await response.json()
+        setNews(data.articles)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoadingNews(false)
+      }
+    }
+    fetchNews()
+  }, [APP_KEY, country])
+
+  const renderContent = () => {
+    if (isLoadingNews) {
+      return <Loader />
+    } else if (view === 'list') {
+      return <NewsList news={news} />
+    } else {
+      return <NewsTile news={news} />
+    }
+  }
+
+  return renderContent()
 }

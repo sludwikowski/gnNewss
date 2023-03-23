@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import {
-  Box,
   Card,
   CardMedia,
   CardContent,
   CardHeader,
   Grid,
+  Link,
   Typography,
 } from '@mui/material'
 
@@ -16,11 +16,17 @@ interface Props {
   news: NewsArticle
 }
 
-function NewsCard({ news }: Props) {
-  const { title, description, url, urlToImage, publishedAt, source } =
-    news
+function NewsTileCard({
+  news: { title, description, url, urlToImage, publishedAt, source },
+}: Props) {
+  const publishedDate = useMemo(() => {
+    return `${new Date(publishedAt).toLocaleTimeString(
+      'pl-PL'
+    )}, ${new Date(publishedAt).toLocaleDateString('pl-PL')}`
+  }, [publishedAt])
+
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={url} spacing={4}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={url}>
       <Card
         sx={{
           height: '100%',
@@ -29,19 +35,20 @@ function NewsCard({ news }: Props) {
         }}
       >
         <CardMedia
+          sx={{ maxHeight: '200px', objectFit: 'cover' }}
           component="img"
-          sx={{
-            // 16:9
-            pt: '56.25%',
-          }}
-          image={urlToImage ? urlToImage : undefined}
+          image={urlToImage || 'https://source.unsplash.com/random'}
           alt="image"
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <CardHeader
             variant="h5"
             component="h2"
-            title={<a href={url}>{title}</a>}
+            title={
+              <Link color="secondary" href={url}>
+                {title}
+              </Link>
+            }
             subheader={source.name}
           />
           <Typography
@@ -57,13 +64,11 @@ function NewsCard({ news }: Props) {
           color="textSecondary"
           align={'center'}
         >
-          {`${new Date(publishedAt).toLocaleTimeString()}, ${new Date(
-            publishedAt
-          ).toLocaleDateString()}`}
+          {publishedDate}
         </Typography>
       </Card>
     </Grid>
   )
 }
 
-export default NewsCard
+export default NewsTileCard

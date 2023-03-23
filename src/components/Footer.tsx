@@ -1,17 +1,20 @@
+import React, { useState, useEffect } from 'react'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../app/store'
+
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import { setArticleCount } from '../features/newsSlice'
 
-function Copyright() {
+function CurrentTime() {
+  const now = new Date()
   return (
     <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        gnNews
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      Current time: {now.toLocaleTimeString()}
     </Typography>
   )
 }
@@ -23,25 +26,44 @@ interface FooterProps {
 
 export default function Footer(props: FooterProps) {
   const { description, title } = props
+  const APP_KEY = import.meta.env.VITE_APP_KEY
+
+  const articleCount = useSelector(
+    (state: RootState) => state.news.articleCount
+  )
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fetchArticleCount = async () => {
+      const response = await fetch(
+        `https://newsapi.org/v2/top-headlines?country=pl&pageSize=1&apiKey=${APP_KEY}`
+      )
+      const data = await response.json()
+      const totalResults = data.totalResults
+      dispatch(setArticleCount(totalResults))
+    }
+    fetchArticleCount()
+  }, [APP_KEY])
 
   return (
     <Box
-      component="footer"
-      sx={{ bgcolor: 'background.paper', py: 6 }}
+      component={Paper}
+      elevation={10}
+      sx={{ bgcolor: '#F5F5F5', py: 1 }}
     >
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {title}
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
           {description}
         </Typography>
-        <Copyright />
+        <Typography
+          variant="body2"
+          align="center"
+          color="text.secondary"
+          gutterBottom
+        >
+          Number of articles: {articleCount}
+        </Typography>
+        <CurrentTime />
       </Container>
     </Box>
   )

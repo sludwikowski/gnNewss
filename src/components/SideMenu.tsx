@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
-import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -9,10 +9,14 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
+import Stack from '@mui/material/Stack'
+import Tooltip from '@mui/material/Tooltip'
+
+import MenuIcon from '@mui/icons-material/Menu'
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
-export default function Menu() {
+export default function SideMenu() {
   const [state, setState] = React.useState({
     left: false,
   })
@@ -59,13 +63,20 @@ export default function Menu() {
     <div>
       {(['left'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button
-            variant={'contained'}
-            color={'secondary'}
-            onClick={toggleDrawer(anchor, true)}
-          >
-            COUNTRIES
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <Tooltip title={'Countries'}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                onClick={toggleDrawer(anchor, true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
+          </Stack>
           <Drawer
             anchor={'left'}
             open={state[anchor]}

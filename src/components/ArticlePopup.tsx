@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Typography,
 } from '@mui/material'
 
 import { NewsArticle } from '../typings'
@@ -16,18 +17,19 @@ interface PopupProps {
   article: NewsArticle | null
 }
 function ArticlePopup({ visible, onClose, article }: PopupProps) {
-  if (!article) {
-    return null
-  }
+  if (!article) return null
+
+  const { title, author, url, source, description } = article
+
   return (
     <Dialog open={visible} onClose={onClose}>
-      <DialogTitle>{article.title}</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <p>Author: {article.author || 'Unknown'}</p>
-        <p>
-          Source: <a href={article.url}>{article.source.name}</a>
-        </p>
-        <p>{article.description}</p>
+        <Typography>Author: {author || 'Unknown'}</Typography>
+        <Typography>
+          Source: <a href={url}>{source.name}</a>
+        </Typography>
+        <Typography>{description}</Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Close</Button>

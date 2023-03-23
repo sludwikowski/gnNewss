@@ -1,22 +1,29 @@
 import * as React from 'react'
 import {
   Button,
+  Badge,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   useMediaQuery,
   useTheme,
+  Tooltip,
 } from '@mui/material'
+
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 export default function Popup() {
   const [open, setOpen] = React.useState(false)
+  const [badgeContent, setBadgeContent] = React.useState(1)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   const handleClickOpen = () => {
     setOpen(true)
+    setBadgeContent(0)
   }
 
   const handleClose = () => {
@@ -24,21 +31,30 @@ export default function Popup() {
   }
 
   const popupContent = (
-    <div>
-      <p>The most difficult part of this task was ...</p>
-      <p>The most fun part of this task was ...</p>
-    </div>
+    <>
+      <DialogContentText>
+        The most difficult part of this task was ...
+      </DialogContentText>
+      <DialogContentText>
+        The most fun part of this task was ...
+      </DialogContentText>
+    </>
   )
 
   return (
     <div>
-      <Button
-        variant={'contained'}
-        color={'secondary'}
-        onClick={handleClickOpen}
-      >
-        Show Popup
-      </Button>
+      <Tooltip title={'Popup'}>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+          onClick={handleClickOpen}
+        >
+          <Badge badgeContent={badgeContent} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+      </Tooltip>
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -48,9 +64,7 @@ export default function Popup() {
         <DialogTitle id="responsive-dialog-title">
           {'Difficulties and Fun'}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText>{popupContent}</DialogContentText>
-        </DialogContent>
+        <DialogContent>{popupContent}</DialogContent>
         <DialogActions>
           <Button
             variant={'contained'}

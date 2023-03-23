@@ -4,12 +4,12 @@ Aplikacja polegać będzie na wyświetlaniu newsów. Źródłem newsów może by
 
 Ekran aplikacji powinien być podzielony na:
 
-- Header
+- Navbar
 - Menu boczne
 - Główny content
 - Footer
 
-## Header
+## Navbar
 
 Powinien zawierać:
 

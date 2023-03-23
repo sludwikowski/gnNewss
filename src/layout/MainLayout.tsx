@@ -1,22 +1,27 @@
+import { useState } from 'react'
+
 import { Outlet } from 'react-router-dom'
 
-import { Box, Container } from '@mui/material'
+import { Container } from '@mui/material'
 
-import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Banner from '../components/Banner'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 
 export default function MainLayout() {
+  const [articles, setArticles] = useState([])
   return (
-    <>
-      <Box>
-        <Header />
-        <Banner />
-        <Container sx={{ py: 12 }} maxWidth="lg">
-          <Outlet />
-        </Container>
-        <Footer description={'gnNews'} title={'task'} />
-      </Box>
-    </>
+    <div>
+      <Navbar />
+      <Header />
+      <Container sx={{ py: 12 }} maxWidth="lg">
+        <Outlet />
+      </Container>
+      <Footer
+        description={'gnNews'}
+        title={'task'}
+        articles={articles}
+      />
+    </div>
   )
 }

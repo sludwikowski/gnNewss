@@ -16,6 +16,15 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
+export const country = [
+  { code: 'PL', name: 'Poland' },
+  { code: 'US', name: 'United States' },
+  { code: 'GB', name: 'Great Britain' },
+  { code: 'CZ', name: 'Chech Republic' },
+  { code: 'AR', name: 'Argentina' },
+  { code: 'FR', name: 'France' },
+]
+
 export default function SideMenu() {
   const [state, setState] = React.useState({
     left: false,
@@ -43,18 +52,13 @@ export default function SideMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-          (text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          )
-        )}
+        {country.map((c) => (
+          <ListItem key={c.code} disablePadding>
+            <ListItemButton href={`/country/${c.code}`}>
+              <ListItemText primary={c.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </Box>
   )

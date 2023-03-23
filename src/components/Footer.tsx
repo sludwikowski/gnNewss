@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
-
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../app/store'
-
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
-import { setArticleCount } from '../features/newsSlice'
+import { setArticleCount, fetchNews } from '../features/newsSlice'
 
 function CurrentTime() {
   const now = new Date()
@@ -26,24 +24,27 @@ interface FooterProps {
 
 export default function Footer(props: FooterProps) {
   const { description, title } = props
-  const APP_KEY = import.meta.env.VITE_APP_KEY
-
+  const dispatch = useDispatch()
   const articleCount = useSelector(
     (state: RootState) => state.news.articleCount
   )
-  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchArticleCount = async () => {
-      const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=pl&pageSize=1&apiKey=${APP_KEY}`
-      )
-      const data = await response.json()
-      const totalResults = data.totalResults
-      dispatch(setArticleCount(totalResults))
+      try {
+        const APP_KEY = import.meta.env.VITE_APP_KEY
+        const response = await fetch(
+          `https://newsapi.org/v2/top-headlines?country=pl&pageSize=1&apiKey=${APP_KEY}`
+        )
+        const data = await response.json()
+        const totalResults = data.totalResults
+        dispatch(setArticleCount(totalResults))
+      } catch (error) {
+        console.error('Error fetching article count', error)
+      }
     }
     fetchArticleCount()
-  }, [APP_KEY])
+  }, [dispatch])
 
   return (
     <Box

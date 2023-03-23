@@ -7,22 +7,12 @@ import {
   selectNews,
   selectIsLoadingNews,
 } from '../features/newsSlice'
-import { NewsArticle } from '../typings'
 
 import NewsTileList from './NewsTileList'
 import NewsList from './NewsList'
 import Loader from './Loader'
 
 import type { AppDispatch, RootState } from '../app/store'
-
-export const country = [
-  { code: 'PL', name: 'Poland' },
-  { code: 'US', name: 'United States' },
-  { code: 'GB', name: 'Great Britain' },
-  { code: 'CZ', name: 'Chech Republic' },
-  { code: 'AR', name: 'Argentina' },
-  { code: 'FR', name: 'France' },
-]
 
 export default function NewsContent() {
   const dispatch: AppDispatch = useDispatch()

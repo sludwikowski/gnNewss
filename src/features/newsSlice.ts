@@ -5,10 +5,16 @@ import {
 } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import { NewsArticle } from '../typings'
+import { country } from '../data/country'
 
+interface Country {
+  code: string
+  name: string
+}
 interface NewsState {
   view: 'list' | 'tiles'
-  country: string
+  selectedCountry: Country
+  countries: Country[]
   articleCount: number
   isLoading: boolean
   news: NewsArticle[]
@@ -17,7 +23,8 @@ interface NewsState {
 
 const initialState: NewsState = {
   view: 'list',
-  country: 'pl',
+  selectedCountry: { code: 'pl', name: 'Poland' },
+  countries: country,
   articleCount: 0,
   isLoading: false,
   news: [],
@@ -45,7 +52,6 @@ export const fetchNews = createAsyncThunk<
     }
   }
 })
-
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
@@ -54,10 +60,16 @@ export const newsSlice = createSlice({
       state.view = action.payload
     },
     setCountry: (state, action: PayloadAction<string>) => {
-      state.country = action.payload
+      state.selectedCountry.code = action.payload
     },
     setArticleCount: (state, action: PayloadAction<number>) => {
       state.articleCount = action.payload
+    },
+    setCountries: (
+      state,
+      action: PayloadAction<{ code: string; name: string }[]>
+    ) => {
+      state.countries = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -75,7 +87,7 @@ export const newsSlice = createSlice({
   },
 })
 
-export const { setView, setCountry, setArticleCount } =
+export const { setView, setCountry, setArticleCount, setCountries } =
   newsSlice.actions
 export default newsSlice.reducer
 
@@ -83,3 +95,6 @@ export const selectNews = (state: RootState) => state.news.news
 
 export const selectIsLoadingNews = (state: RootState) =>
   state.news.isLoading
+
+export const selectCountries = (state: RootState) =>
+  state.news.countries

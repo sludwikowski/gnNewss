@@ -5,25 +5,14 @@ import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
 
 import MenuIcon from '@mui/icons-material/Menu'
+import { country } from '../data/country'
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right'
-
-export const country = [
-  { code: 'PL', name: 'Poland' },
-  { code: 'US', name: 'United States' },
-  { code: 'GB', name: 'Great Britain' },
-  { code: 'CZ', name: 'Chech Republic' },
-  { code: 'AR', name: 'Argentina' },
-  { code: 'FR', name: 'France' },
-]
 
 export default function SideMenu() {
   const [state, setState] = React.useState({

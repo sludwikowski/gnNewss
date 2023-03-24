@@ -9,14 +9,10 @@ import {
   Typography,
 } from '@mui/material'
 
-import { NewsArticle } from '../typings'
+import { TileCardProps } from '../typings'
 import ArticlePopup from './ArticlePopup'
 
-interface Props {
-  news: NewsArticle
-}
-
-export default function NewsTileCard({ news }: Props) {
+export default function NewsTileCard({ news }: TileCardProps) {
   const { title, description, url, urlToImage, publishedAt, source } =
     news
 

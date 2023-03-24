@@ -16,5 +16,9 @@
     "close": "Close",
     "content": "Content",
     "contentEmpty": "No content to display"
+  },
+  "footer": {
+    "count": "Number of articles:",
+    "time": "Current time:"
   }
 }

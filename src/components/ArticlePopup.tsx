@@ -10,13 +10,7 @@ import {
 
 import { useTranslation } from 'react-i18next'
 
-import { NewsArticle } from '../typings'
-// onClick={() => handleCountryClick(country.code)}  href={`/country/${country.code}`}
-interface PopupProps {
-  visible: boolean
-  onClose: () => void
-  article: NewsArticle | null
-}
+import { PopupProps } from '../typings'
 export default function ArticlePopup({
   visible,
   onClose,
@@ -31,9 +25,11 @@ export default function ArticlePopup({
     <Dialog open={visible} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <Typography>
-          {t('articlePopup.author')}: {author || t('popup.unknown')}
-        </Typography>
+        {author && (
+          <Typography>
+            {t('articlePopup.author')}: {author}
+          </Typography>
+        )}
         <Typography>
           {t('articlePopup.source')}:{' '}
           <Link

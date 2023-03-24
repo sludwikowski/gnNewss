@@ -2,15 +2,11 @@ import React, { useState } from 'react'
 
 import { Grid, Pagination } from '@mui/material'
 
-import { NewsArticle } from '../typings'
+import { NewsArticle, NewsProps } from '../typings'
 
 import NewsTileCard from './NewsTileCard'
 
-interface NewsTileProps {
-  news: NewsArticle[]
-}
-
-export default function NewsTileList({ news }: NewsTileProps) {
+export default function NewsTileList({ news }: NewsProps) {
   const [page, setPage] = useState(1)
   const articlesPerPage = 12
 

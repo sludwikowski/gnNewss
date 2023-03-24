@@ -16,5 +16,9 @@
     "close": "Zamknij",
     "content": "Treść",
     "contentEmpty": "Brak treści do wyświetlenia"
+  },
+  "footer": {
+    "count": "Ilość artykułów na stronie:",
+    "time": "Aktualna Godzina:"
   }
 }

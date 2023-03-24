@@ -18,11 +18,12 @@ export default function Header() {
         align="center"
         color="text.primary"
         gutterBottom
+        sx={{
+          '& span': { color: theme.palette.secondary.main },
+        }}
       >
         gn
-        <span style={{ color: theme.palette.primary.main }}>
-          News
-        </span>
+        <span>News</span>
       </Typography>
       <Typography
         variant="h5"

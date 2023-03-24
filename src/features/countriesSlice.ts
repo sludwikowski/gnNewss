@@ -1,19 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { countryNames } from '../data/countryName'
 
-interface Country {
-  code: string
-  name: string
-  nameEn: string
-}
-
-interface CountriesState {
-  selectedCountry: Country
-  countries: Country[]
-}
+import { CountriesState } from '../typings'
 
 const initialState: CountriesState = {
-  selectedCountry: { code: 'PL', name: 'Polska', nameEn: 'Poland' },
+  selectedCountry: { code: '', name: '', nameEn: '' },
   countries: Object.entries(countryNames).map(([code, name]) => ({
     code,
     name: name.name,

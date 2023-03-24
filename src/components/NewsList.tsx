@@ -11,47 +11,28 @@ import {
 
 import ArticlePopup from './ArticlePopup'
 
-import { NewsArticle } from '../typings'
+import { NewsArticle, NewsProps } from '../typings'
 
-interface NewsListProps {
-  news: NewsArticle[]
-}
+import { formatPolishDateTime } from '../helpers/formatPolishDateTime'
 
-function formatPolishDateTime(dateStr: string) {
-  const date = new Date(dateStr)
-  const day = date.getDate()
-  const month = date.getMonth() + 1
-  const year = date.getFullYear()
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  const seconds = date.getSeconds()
-  return `${day < 10 ? '0' : ''}${day}.${
-    month < 10 ? '0' : ''
-  }${month}.${year} ${hours}:${minutes}:${seconds}`
-}
-
-export default function NewsList({ news }: NewsListProps) {
+export default function NewsList({ news }: NewsProps) {
   const [page, setPage] = useState(1)
   const [selectedArticle, setSelectedArticle] =
     useState<NewsArticle | null>(null)
+
   const articlesPerPage = 10
   const numPages = Math.ceil(news.length / articlesPerPage)
-
-  const handleArticleClick = (article: NewsArticle) => {
+  const handleArticleClick = (article: NewsArticle) =>
     setSelectedArticle(article)
-  }
-
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
     setPage(value)
   }
-
   if (!news) {
     return null
   }
-
   return (
     <>
       <List>

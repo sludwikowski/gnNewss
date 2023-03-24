@@ -26,7 +26,7 @@ export default function Navbar() {
   const dispatch = useDispatch()
   const view = useSelector((state: RootState) => state.news.view)
   const [currentLang, setCurrentLang] = useState('en')
-  const { t, i18n } = useTranslation() // deklaracja hooka useTranslation
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     document.documentElement.lang = currentLang
@@ -34,7 +34,7 @@ export default function Navbar() {
 
   const switchLanguage = () => {
     setCurrentLang((prevLang) => (prevLang === 'en' ? 'pl' : 'en'))
-    i18n.changeLanguage(currentLang === 'en' ? 'pl' : 'en') // ustawienie języka za pomocą hooka useTranslation
+    i18n.changeLanguage(currentLang === 'en' ? 'pl' : 'en')
   }
 
   const onSwitchView = () => {
@@ -90,9 +90,9 @@ export default function Navbar() {
               color="inherit"
             >
               {currentLang === 'en' ? (
-                <Flag country={'GB'} />
-              ) : (
                 <Flag country={'PL'} />
+              ) : (
+                <Flag country={'GB'} />
               )}
             </Box>
           </Box>

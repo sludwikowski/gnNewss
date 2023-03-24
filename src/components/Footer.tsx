@@ -3,18 +3,18 @@ import { useSelector } from 'react-redux'
 
 import { Box, Container, Paper, Typography } from '@mui/material'
 
+import { useTranslation } from 'react-i18next'
+
 import { RootState } from '../app/store'
 
-interface FooterProps {
-  title: string
-}
-
+import { FooterProps } from '../typings'
 export default function Footer(props: FooterProps) {
   const { title } = props
   const [currentTime, setCurrentTime] = useState(new Date())
   const articleCount = useSelector(
     (state: RootState) => state.news.articleCount
   )
+  const { t } = useTranslation()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,7 +39,7 @@ export default function Footer(props: FooterProps) {
           color="text.secondary"
           gutterBottom
         >
-          Number of articles: {articleCount}
+          {t('footer.count')} {articleCount}
         </Typography>
         <Typography
           variant="body2"
@@ -47,7 +47,7 @@ export default function Footer(props: FooterProps) {
           color="text.secondary"
           gutterBottom
         >
-          Current time: {currentTime.toLocaleTimeString('Pl-pl')}
+          {t('footer.time')} {currentTime.toLocaleTimeString('Pl-pl')}
         </Typography>
       </Container>
     </Box>

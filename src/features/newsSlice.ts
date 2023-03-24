@@ -4,16 +4,8 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
-import { NewsArticle } from '../typings'
+import { NewsState, NewsArticle } from '../typings'
 import { fetchNews } from '../api/fetchNews'
-
-interface NewsState {
-  view: 'list' | 'tiles'
-  articleCount: number
-  isLoading: boolean
-  news: NewsArticle[]
-  error: string | null
-}
 
 const initialState: NewsState = {
   view: 'list',
@@ -56,17 +48,20 @@ const newsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchNewsThunk.pending, (state) => {
-      state.isLoading = true
-    })
-    builder.addCase(fetchNewsThunk.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.news = action.payload
-    })
-    builder.addCase(fetchNewsThunk.rejected, (state, action) => {
-      state.isLoading = false
-      state.error = action.payload as string
-    })
+    builder.addMatcher(
+      (action) =>
+        action.type.endsWith('/pending') ||
+        action.type.endsWith('/fulfilled') ||
+        action.type.endsWith('/rejected'),
+      (state, action) => {
+        state.isLoading = action.meta.requestStatus === 'pending'
+        state.news = action.payload ?? state.news
+        state.error =
+          action.meta.requestStatus === 'rejected'
+            ? (action.payload as string)
+            : null
+      }
+    )
   },
 })
 

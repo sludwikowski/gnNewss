@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+
 import { Grid, Pagination } from '@mui/material'
+
 import { NewsArticle } from '../typings'
+
 import NewsTileCard from './NewsTileCard'
 
 interface NewsTileProps {

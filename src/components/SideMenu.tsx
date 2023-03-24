@@ -1,16 +1,21 @@
-import * as React from 'react'
-import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import Stack from '@mui/material/Stack'
-import Tooltip from '@mui/material/Tooltip'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import {
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Stack,
+  Tooltip,
+} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import { country } from '../data/country'
+
+import { setCountry } from '../features/countriesSlice'
+import { RootState } from '../app/store'
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
@@ -18,6 +23,11 @@ export default function SideMenu() {
   const [state, setState] = React.useState({
     left: false,
   })
+
+  const dispatch = useDispatch()
+  const countries = useSelector(
+    (state: RootState) => state.countries.countries
+  )
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -33,6 +43,10 @@ export default function SideMenu() {
       setState({ ...state, [anchor]: open })
     }
 
+  const handleCountryClick = (code: string) => {
+    dispatch(setCountry(code))
+  }
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: 250 }}
@@ -41,9 +55,11 @@ export default function SideMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {country.map((c) => (
+        {countries.map((c) => (
           <ListItem key={c.code} disablePadding>
-            <ListItemButton href={`/country/${c.code}`}>
+            <ListItemButton
+              onClick={() => handleCountryClick(c.code)}
+            >
               <ListItemText primary={c.name} />
             </ListItemButton>
           </ListItem>

@@ -3,18 +3,13 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
+
 import { RootState } from '../app/store'
 import { NewsArticle } from '../typings'
-import { country } from '../data/country'
+import fetchNews from '../api/fetchNews'
 
-interface Country {
-  code: string
-  name: string
-}
 interface NewsState {
   view: 'list' | 'tiles'
-  selectedCountry: Country
-  countries: Country[]
   articleCount: number
   isLoading: boolean
   news: NewsArticle[]
@@ -23,35 +18,33 @@ interface NewsState {
 
 const initialState: NewsState = {
   view: 'list',
-  selectedCountry: { code: 'pl', name: 'Poland' },
-  countries: country,
   articleCount: 0,
   isLoading: false,
   news: [],
   error: null,
 }
 
-export const fetchNews = createAsyncThunk<
+export const fetchNewsThunk = createAsyncThunk<
   NewsArticle[],
   string,
   { rejectValue: string }
->('news/fetchNews', async (country, { rejectWithValue }) => {
-  try {
-    const APP_KEY = import.meta.env.VITE_APP_KEY
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${country}&pageSize=30&apiKey=${APP_KEY}`
-    )
-    const data = await response.json()
-    return data.articles
-  } catch (error: unknown) {
-    // add a type annotation here
-    if (typeof error === 'string') {
-      return rejectWithValue(error)
-    } else {
-      return rejectWithValue('An unknown error occurred.')
+>(
+  'news/fetchNews',
+  async (country, { rejectWithValue, dispatch, getState }) => {
+    try {
+      const news = await fetchNews(country)
+      dispatch(setArticleCount(news.length))
+      return news
+    } catch (error: unknown) {
+      if (typeof error === 'string') {
+        return rejectWithValue(error)
+      } else {
+        return rejectWithValue('An unknown error occurred.')
+      }
     }
   }
-})
+)
+
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
@@ -59,42 +52,29 @@ export const newsSlice = createSlice({
     setView: (state, action: PayloadAction<'list' | 'tiles'>) => {
       state.view = action.payload
     },
-    setCountry: (state, action: PayloadAction<string>) => {
-      state.selectedCountry.code = action.payload
-    },
     setArticleCount: (state, action: PayloadAction<number>) => {
       state.articleCount = action.payload
     },
-    setCountries: (
-      state,
-      action: PayloadAction<{ code: string; name: string }[]>
-    ) => {
-      state.countries = action.payload
-    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchNews.pending, (state) => {
+    builder.addCase(fetchNewsThunk.pending, (state) => {
       state.isLoading = true
     })
-    builder.addCase(fetchNews.fulfilled, (state, action) => {
+    builder.addCase(fetchNewsThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.news = action.payload
     })
-    builder.addCase(fetchNews.rejected, (state, action) => {
+    builder.addCase(fetchNewsThunk.rejected, (state, action) => {
       state.isLoading = false
       state.error = action.payload as string
     })
   },
 })
 
-export const { setView, setCountry, setArticleCount, setCountries } =
-  newsSlice.actions
+export const { setView, setArticleCount } = newsSlice.actions
 export default newsSlice.reducer
 
 export const selectNews = (state: RootState) => state.news.news
 
 export const selectIsLoadingNews = (state: RootState) =>
   state.news.isLoading
-
-export const selectCountries = (state: RootState) =>
-  state.news.countries

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   Dialog,
   DialogTitle,
@@ -17,7 +15,11 @@ interface PopupProps {
   onClose: () => void
   article: NewsArticle | null
 }
-function ArticlePopup({ visible, onClose, article }: PopupProps) {
+export default function ArticlePopup({
+  visible,
+  onClose,
+  article,
+}: PopupProps) {
   if (!article) return null
 
   const { title, author, url, source, description } = article
@@ -42,5 +44,3 @@ function ArticlePopup({ visible, onClose, article }: PopupProps) {
     </Dialog>
   )
 }
-
-export default ArticlePopup

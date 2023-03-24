@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { Box, Container, Paper, Typography } from '@mui/material'
+
 import { RootState } from '../app/store'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
-import Paper from '@mui/material/Paper'
-import { setArticleCount, fetchNews } from '../features/newsSlice'
+import { setArticleCount } from '../features/newsSlice'
 
 interface FooterProps {
   description: string
@@ -32,7 +30,7 @@ export default function Footer(props: FooterProps) {
         const totalResults = data.totalResults
         dispatch(setArticleCount(totalResults))
       } catch (error) {
-        console.error('Error fetching article count', error)
+        return <div>Error fetching article count</div>
       }
     }
     fetchArticleCount()
@@ -53,7 +51,7 @@ export default function Footer(props: FooterProps) {
     >
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {description}
+          {title} {description}
         </Typography>
         <Typography
           variant="body2"

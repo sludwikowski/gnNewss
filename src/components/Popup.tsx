@@ -1,4 +1,5 @@
-import * as React from 'react'
+import React from 'react'
+
 import {
   Button,
   Badge,
@@ -12,7 +13,6 @@ import {
   useTheme,
   Tooltip,
 } from '@mui/material'
-
 import NotificationsIcon from '@mui/icons-material/Notifications'
 
 export default function Popup() {

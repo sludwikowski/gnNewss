@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
+
 import {
-  Link,
-  Button,
   Box,
   List,
   ListItem,
@@ -8,9 +8,10 @@ import {
   Pagination,
   Typography,
 } from '@mui/material'
-import { NewsArticle } from '../typings'
-import { useState } from 'react'
+
 import ArticlePopup from './ArticlePopup'
+
+import { NewsArticle } from '../typings'
 
 interface NewsListProps {
   news: NewsArticle[]
@@ -58,7 +59,7 @@ export default function NewsList({ news }: NewsListProps) {
                     {article.title}
                   </Box>
                 }
-                secondary={`${article.source.name},  ${article.publishedAt}`}
+                secondary={`${article.source.name}, ${article.publishedAt}`}
               />
               <ArticlePopup
                 visible={selectedArticle !== null}

@@ -1,7 +1,6 @@
-import React from 'react'
 import { Container, Typography, useTheme } from '@mui/material'
 
-function Header() {
+export default function Header() {
   const theme = useTheme()
   return (
     <Container
@@ -39,5 +38,3 @@ function Header() {
     </Container>
   )
 }
-
-export default Header

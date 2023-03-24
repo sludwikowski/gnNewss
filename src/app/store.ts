@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import newsReducer from '../features/newsSlice'
+import countriesReducer from '../features/countriesSlice'
 
 export const store = configureStore({
   reducer: {
     news: newsReducer,
+    countries: countriesReducer,
   },
 })
 

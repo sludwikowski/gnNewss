@@ -11,11 +11,11 @@ export default function MainLayout() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Redirect to Poland if no country is specified
     if (country === undefined) {
       navigate('/country/pl')
     }
-  }, [])
+  }, [country, navigate])
+
   return (
     <div>
       <Navbar />
@@ -23,7 +23,7 @@ export default function MainLayout() {
       <Container sx={{ py: 12 }} maxWidth="lg">
         <Outlet />
       </Container>
-      <Footer description={'gnNews'} title={'task'} />
+      <Footer description={'task'} title={'gnNews'} />
     </div>
   )
 }

@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import {
-  fetchNews,
+  fetchNewsThunk,
   selectNews,
   selectIsLoadingNews,
 } from '../features/newsSlice'
 
-import NewsTileList from './NewsTileList'
-import NewsList from './NewsList'
-import Loader from './Loader'
-
 import type { AppDispatch, RootState } from '../app/store'
+
+import NewsTileList from '../components/NewsTileList'
+import NewsList from '../components/NewsList'
+import Loader from '../components/Loader'
 
 export default function NewsContent() {
   const dispatch: AppDispatch = useDispatch()
@@ -23,7 +23,7 @@ export default function NewsContent() {
 
   useEffect(() => {
     if (country) {
-      dispatch(fetchNews(country))
+      dispatch(fetchNewsThunk(country))
     }
   }, [country, dispatch])
 

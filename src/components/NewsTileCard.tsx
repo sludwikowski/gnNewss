@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import {
   Card,
@@ -6,7 +6,6 @@ import {
   CardContent,
   CardHeader,
   Grid,
-  Link,
   Typography,
 } from '@mui/material'
 
@@ -17,7 +16,7 @@ interface Props {
   news: NewsArticle
 }
 
-function NewsTileCard({ news }: Props) {
+export default function NewsTileCard({ news }: Props) {
   const { title, description, url, urlToImage, publishedAt, source } =
     news
 
@@ -97,5 +96,3 @@ function NewsTileCard({ news }: Props) {
     </Grid>
   )
 }
-
-export default NewsTileCard

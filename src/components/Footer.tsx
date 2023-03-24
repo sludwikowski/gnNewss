@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { Box, Container, Paper, Typography } from '@mui/material'
 
 import { RootState } from '../app/store'
-import { setArticleCount } from '../features/newsSlice'
 
 interface FooterProps {
   description: string
@@ -14,27 +13,9 @@ interface FooterProps {
 export default function Footer(props: FooterProps) {
   const { description, title } = props
   const [currentTime, setCurrentTime] = useState(new Date())
-  const dispatch = useDispatch()
   const articleCount = useSelector(
     (state: RootState) => state.news.articleCount
   )
-
-  useEffect(() => {
-    const fetchArticleCount = async () => {
-      try {
-        const APP_KEY = import.meta.env.VITE_APP_KEY
-        const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=pl&pageSize=1&apiKey=${APP_KEY}`
-        )
-        const data = await response.json()
-        const totalResults = data.totalResults
-        dispatch(setArticleCount(totalResults))
-      } catch (error) {
-        return <div>Error fetching article count</div>
-      }
-    }
-    fetchArticleCount()
-  }, [dispatch])
 
   useEffect(() => {
     const interval = setInterval(() => {

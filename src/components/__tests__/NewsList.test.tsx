@@ -3,7 +3,7 @@ import { NewsArticle } from '../../typings'
 import NewsList from '../NewsList'
 
 describe('NewsList', () => {
-  const news: NewsArticle[] = [
+  const newsList: NewsArticle[] = [
     {
       title: 'Test article 1',
       url: 'https://example.com/test-article-1',
@@ -30,33 +30,59 @@ describe('NewsList', () => {
     },
   ]
 
-  it('renders a list of news items', () => {
-    render(<NewsList news={news} />)
-    const article1 = screen.getByText(/Test article 1/i)
-    const article2 = screen.getByText(/Test article 2/i)
-    expect(article1).toBeInTheDocument()
-    expect(article2).toBeInTheDocument()
+  describe('when rendering a list of news items', () => {
+    beforeEach(() => {
+      render(<NewsList news={newsList} />)
+    })
+
+    it('should display article titles', () => {
+      const { getByText } = screen
+      const title1 = getByText(/Test article 1/i)
+      const title2 = getByText(/Test article 2/i)
+      expect(title1).toBeInTheDocument()
+      expect(title2).toBeInTheDocument()
+    })
+
+    it('should display article sources', () => {
+      const { getByText } = screen
+      const source1 = getByText(/Example 1/i)
+      const source2 = getByText(/Example 2/i)
+      expect(source1).toBeInTheDocument()
+      expect(source2).toBeInTheDocument()
+    })
   })
 
-  it('displays the selected article when clicked', () => {
-    render(<NewsList news={news} />)
-    const article1 = screen.getByText(/Test article 1/i)
-    const article2 = screen.getByText(/Test article 2/i)
+  describe('when displaying a selected article', () => {
+    beforeEach(() => {
+      render(<NewsList news={newsList} />)
+    })
 
-    article1?.click()
+    it('should display the correct title and source for the first article when clicked', () => {
+      const { getByText } = screen
+      const title1 = getByText(/Test article 1/i)
+      const source1 = getByText(/Example 1/i)
 
-    const popupTitle = screen.getByText(/Test article 1/i)
-    const popupContent = screen.getByText(/Example 1/i)
+      title1?.click()
 
-    expect(popupTitle).toBeInTheDocument()
-    expect(popupContent).toBeInTheDocument()
+      const popupTitle = getByText(/Test article 1/i)
+      const popupSource = getByText(/Example 1/i)
 
-    article2?.click()
+      expect(popupTitle).toBeInTheDocument()
+      expect(popupSource).toBeInTheDocument()
+    })
 
-    const popupTitle2 = screen.getByText(/Test article 2/i)
-    const popupContent2 = screen.getByText(/Example 2/i)
+    it('should display the correct title and source for the second article when clicked', () => {
+      const { getByText } = screen
+      const title2 = getByText(/Test article 2/i)
+      const source2 = getByText(/Example 2/i)
 
-    expect(popupTitle2).toBeInTheDocument()
-    expect(popupContent2).toBeInTheDocument()
+      title2?.click()
+
+      const popupTitle = getByText(/Test article 2/i)
+      const popupSource = getByText(/Example 2/i)
+
+      expect(popupTitle).toBeInTheDocument()
+      expect(popupSource).toBeInTheDocument()
+    })
   })
 })

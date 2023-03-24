@@ -47,7 +47,11 @@ export default function Navbar() {
               <IconButton
                 size="large"
                 edge="end"
-                aria-label="account of current user"
+                aria-label={
+                  view === 'list'
+                    ? 'Switch to tiles view'
+                    : 'Switch to list view'
+                }
                 aria-haspopup="true"
                 onClick={onSwithView}
                 color="inherit"

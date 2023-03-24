@@ -39,6 +39,8 @@ specifiers:
   prettier: 2.8.2
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-flag-kit: ^1.1.1
+  react-flagkit: ^2.0.4
   react-redux: ^8.0.5
   react-router-dom: ^6.9.0
   react-test-render: ^1.1.2
@@ -61,6 +63,8 @@ dependencies:
   '@testing-library/dom': 9.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-flag-kit: 1.1.1_react@18.2.0
+  react-flagkit: 2.0.4_react@18.2.0
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
   react-router-dom: 6.9.0_biqbaboplfbrettd7655fr4n2y
 
@@ -5732,6 +5736,24 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+
+  /react-flag-kit/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-sgelSGSl0HxSL8lMM1TEBidgiGV2hOi+GaLNKeg10aBnL07vpwKvmfILlc1SzOdVyH48NElFyMj4NQn8F+/FHw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^16.6.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-flagkit/2.0.4_react@18.2.0:
+    resolution: {integrity: sha512-e0Rak6VG1+KemBFqLqTPzFDLYS40lEW1YOpG9s68WDoEoQiC0YPEXDkIGLorNgP6omJztcg/OtcjSqAKM2O1cw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}

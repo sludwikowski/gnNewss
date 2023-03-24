@@ -12,7 +12,7 @@ export default function MainLayout() {
 
   useEffect(() => {
     if (country === undefined) {
-      navigate('/country/pl')
+      navigate('/country/PL')
     }
   }, [country, navigate])
 

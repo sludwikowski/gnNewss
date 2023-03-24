@@ -36,7 +36,7 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: 'block' }}
+            sx={{ display: 'block', cursor: 'pointer' }}
             onClick={() => navigate('/')}
           >
             gnNews

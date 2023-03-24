@@ -5,3 +5,4 @@ coverage
 lint-staged.config.js
 vite.config.ts
 .turbo
+src/components/__tests__

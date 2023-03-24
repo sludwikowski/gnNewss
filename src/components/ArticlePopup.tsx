@@ -45,7 +45,7 @@ export default function ArticlePopup({
         </Typography>
         <Typography>
           {t('articlePopup.sourceLink')}:{' '}
-          <Link sx={{ color: 'blue' }} href={url}>
+          <Link sx={{ color: 'blue' }} href={url} target={'_blank'}>
             {url}
           </Link>
         </Typography>

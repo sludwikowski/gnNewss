@@ -3,10 +3,9 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-
 import { RootState } from '../app/store'
 import { NewsArticle } from '../typings'
-import fetchNews from '../api/fetchNews'
+import { fetchNews } from '../api/fetchNews'
 
 interface NewsState {
   view: 'list' | 'tiles'
@@ -30,7 +29,7 @@ export const fetchNewsThunk = createAsyncThunk<
   { rejectValue: string }
 >(
   'news/fetchNews',
-  async (country, { rejectWithValue, dispatch, getState }) => {
+  async (country, { rejectWithValue, dispatch }) => {
     try {
       const news = await fetchNews(country)
       dispatch(setArticleCount(news.length))

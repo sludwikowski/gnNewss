@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 
 import { NewsArticle } from '../typings'
-
+// onClick={() => handleCountryClick(country.code)}  href={`/country/${country.code}`}
 interface PopupProps {
   visible: boolean
   onClose: () => void

@@ -59,6 +59,7 @@ export default function SideMenu() {
           <ListItem key={c.code} disablePadding>
             <ListItemButton
               onClick={() => handleCountryClick(c.code)}
+              href={`/country/${c.code}`}
             >
               <ListItemText primary={c.name} />
             </ListItemButton>

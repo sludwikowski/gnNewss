@@ -1,0 +1,20 @@
+{
+  "popup": {
+    "title": "Fun and Problems",
+    "message1": "The biggest difficulty was with the option of counting the number of articles in the footer.",
+    "message2": "The most fun was finding solutions to encountered problems.",
+    "button": "OK"
+  },
+  "header": {
+    "subtitle": "Read the latest news from gnNews!"
+  },
+  "articlePopup":  {
+    "author": "Author",
+    "unknown": "Unknown",
+    "source": "Source",
+    "sourceLink": "Source link",
+    "close": "Close",
+    "content": "Content",
+    "contentEmpty": "No content to display"
+  }
+}

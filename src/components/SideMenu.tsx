@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import {
   Box,
@@ -47,10 +48,11 @@ export default function SideMenu() {
   const handleCountryClick = (code: string) => {
     dispatch(setCountry(code))
   }
+  const { i18n } = useTranslation()
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 200 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -62,7 +64,9 @@ export default function SideMenu() {
               onClick={() => handleCountryClick(c.code)}
               href={`/country/${c.code}`}
             >
-              <ListItemText primary={c.name} />
+              <ListItemText
+                primary={i18n.language === 'en' ? c.nameEn : c.name}
+              />
               <Flag country={c.code} />
             </ListItemButton>
           </ListItem>

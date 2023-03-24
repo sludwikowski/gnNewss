@@ -1,7 +1,10 @@
 import { Container, Typography, useTheme } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export default function Header() {
   const theme = useTheme()
+  const { t } = useTranslation()
+
   return (
     <Container
       disableGutters
@@ -27,13 +30,7 @@ export default function Header() {
         color="text.secondary"
         component="p"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse tempor interdum turpis, sit amet bibendum dui
-        suscipit ut. Aliquam finibus rhoncus urna, in tempor metus
-        bibendum in. Suspendisse quis tincidunt nulla. Nulla aliquam,
-        tellus eu rutrum tristique, tellus lectus eleifend dui, vitae
-        pretium neque augue non orci. Nunc maximus eros at nibh
-        pharetra dapibus.
+        {t('header.subtitle')}
       </Typography>
     </Container>
   )

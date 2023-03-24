@@ -6,12 +6,11 @@ import { Box, Container, Paper, Typography } from '@mui/material'
 import { RootState } from '../app/store'
 
 interface FooterProps {
-  description: string
   title: string
 }
 
 export default function Footer(props: FooterProps) {
-  const { description, title } = props
+  const { title } = props
   const [currentTime, setCurrentTime] = useState(new Date())
   const articleCount = useSelector(
     (state: RootState) => state.news.articleCount
@@ -32,7 +31,7 @@ export default function Footer(props: FooterProps) {
     >
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {title} {description}
+          {title}
         </Typography>
         <Typography
           variant="body2"

@@ -1,0 +1,20 @@
+{
+  "popup": {
+    "title": "Frajda i Problemy",
+    "message1": "Największą trudność miałem z opcją zliczania ilości artykułów w stopce.",
+    "message2": "Największą frajdę sprawiło mi szukanie rozwiązań napotykanych problemów.",
+    "button": "OK"
+  },
+  "header": {
+    "subtitle": "Czytaj najnowsze informacje  portalu informacyjnym gnNews! U nas zawsze aktualne wiadomości z kraju, ze świata."
+  },
+  "articlePopup":  {
+    "author": "Autor",
+    "unknown": "Nieznany",
+    "source": "Źródło",
+    "sourceLink": "Link do źródła",
+    "close": "Zamknij",
+    "content": "Treść",
+    "contentEmpty": "Brak treści do wyświetlenia"
+  }
+}

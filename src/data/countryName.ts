@@ -1,0 +1,15 @@
+export const countryNames = {
+  PL: { name: 'Polska', nameEn: 'Poland' },
+  US: { name: 'Stany Zjednoczone', nameEn: 'United States' },
+  GB: { name: 'Wielka Brytania', nameEn: 'Great Britain' },
+  CZ: { name: 'Czechy', nameEn: 'Czech Republic' },
+  AR: { name: 'Argentyna', nameEn: 'Argentina' },
+  FR: { name: 'Francja', nameEn: 'France' },
+  DE: { name: 'Niemcy', nameEn: 'Germany' },
+  JP: { name: 'Japonia', nameEn: 'Japan' },
+  BR: { name: 'Brazylia', nameEn: 'Brazil' },
+  AU: { name: 'Australia', nameEn: 'Australia' },
+  CA: { name: 'Kanada', nameEn: 'Canada' },
+  IT: { name: 'Włochy', nameEn: 'Italy' },
+  IN: { name: 'Indie', nameEn: 'India' },
+}

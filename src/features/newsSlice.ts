@@ -44,7 +44,7 @@ export const fetchNewsThunk = createAsyncThunk<
   }
 )
 
-export const newsSlice = createSlice({
+const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
@@ -70,6 +70,7 @@ export const newsSlice = createSlice({
   },
 })
 
+// eslint-disable-next-line import/no-unused-modules
 export const { setView, setArticleCount } = newsSlice.actions
 export default newsSlice.reducer
 

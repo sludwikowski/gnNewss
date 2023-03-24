@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   Button,
@@ -20,6 +21,7 @@ export default function Popup() {
   const [badgeContent, setBadgeContent] = React.useState(1)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const { t } = useTranslation()
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -32,14 +34,8 @@ export default function Popup() {
 
   const popupContent = (
     <>
-      <DialogContentText>
-        Największą trudność miałem z opcją zliczania ilości artykułów
-        w stopce.
-      </DialogContentText>
-      <DialogContentText>
-        Największą frajdę sprawiło mi szukanie rozwiązań napotykanych
-        problemów.
-      </DialogContentText>
+      <DialogContentText>{t('popup.message1')}</DialogContentText>
+      <DialogContentText>{t('popup.message2')}</DialogContentText>
     </>
   )
 
@@ -64,7 +60,7 @@ export default function Popup() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {'Frajda i Problemy'}
+          {t('popup.title')}
         </DialogTitle>
         <DialogContent>{popupContent}</DialogContent>
         <DialogActions>
@@ -73,7 +69,7 @@ export default function Popup() {
             color={'secondary'}
             onClick={handleClose}
           >
-            Ok
+            {t('popup.button')}
           </Button>
         </DialogActions>
       </Dialog>

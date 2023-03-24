@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 import { green, grey, red } from '@mui/material/colors'
 
-export const shades = {
+const shades = {
   primary: {
     100: '#cccccc',
     200: '#999999',

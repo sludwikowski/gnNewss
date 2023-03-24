@@ -8,6 +8,8 @@ import {
   Typography,
 } from '@mui/material'
 
+import { useTranslation } from 'react-i18next'
+
 import { NewsArticle } from '../typings'
 // onClick={() => handleCountryClick(country.code)}  href={`/country/${country.code}`}
 interface PopupProps {
@@ -20,6 +22,7 @@ export default function ArticlePopup({
   onClose,
   article,
 }: PopupProps) {
+  const { t } = useTranslation()
   if (!article) return null
 
   const { title, author, url, source, description } = article
@@ -28,18 +31,37 @@ export default function ArticlePopup({
     <Dialog open={visible} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <Typography>Author: {author || 'Unknown'}</Typography>
         <Typography>
-          Source: <Link href={url}>{source.name}</Link>
+          {t('articlePopup.author')}: {author || t('popup.unknown')}
         </Typography>
         <Typography>
-          SourceLink: <Link href={url}>{url}</Link>
+          {t('articlePopup.source')}:{' '}
+          <Link
+            sx={{ fontWeight: 'bold', color: 'black' }}
+            href={url}
+          >
+            {source.name}
+          </Link>
         </Typography>
-
-        <Typography>{description}</Typography>
+        <Typography>
+          {t('articlePopup.sourceLink')}:{' '}
+          <Link sx={{ color: 'blue' }} href={url}>
+            {url}
+          </Link>
+        </Typography>
+        <Typography>{t('articlePopup.content')}:</Typography>{' '}
+        <Typography variant={'body2'}>
+          {description || t('articlePopup.contentEmpty')}
+        </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button
+          variant={'contained'}
+          color={'secondary'}
+          onClick={onClose}
+        >
+          {t('articlePopup.close')}
+        </Button>
       </DialogActions>
     </Dialog>
   )

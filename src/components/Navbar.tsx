@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next' // import useTranslation
 
 import {
   AppBar,
@@ -9,8 +11,9 @@ import {
   Toolbar,
   Tooltip,
 } from '@mui/material'
-import ListIcon from '@mui/icons-material/List'
-import BorderAllIcon from '@mui/icons-material/BorderAll'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import GridViewIcon from '@mui/icons-material/GridView'
+import Flag from 'react-flagkit'
 
 import { RootState } from '../app/store'
 import { setView } from '../features/newsSlice'
@@ -22,8 +25,19 @@ export default function Navbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const view = useSelector((state: RootState) => state.news.view)
+  const [currentLang, setCurrentLang] = useState('en')
+  const { t, i18n } = useTranslation() // deklaracja hooka useTranslation
 
-  const onSwithView = () => {
+  useEffect(() => {
+    document.documentElement.lang = currentLang
+  }, [currentLang])
+
+  const switchLanguage = () => {
+    setCurrentLang((prevLang) => (prevLang === 'en' ? 'pl' : 'en'))
+    i18n.changeLanguage(currentLang === 'en' ? 'pl' : 'en') // ustawienie języka za pomocą hooka useTranslation
+  }
+
+  const onSwitchView = () => {
     dispatch(setView(view === 'list' ? 'tiles' : 'list'))
   }
 
@@ -43,24 +57,44 @@ export default function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: 'flex' }}>
-            <Tooltip title={'Change visibility'}>
-              <IconButton
+            <Tooltip title={t('Switch View')}>
+              <Box
+                component={IconButton}
                 size="large"
                 edge="end"
                 aria-label={
                   view === 'list'
-                    ? 'Switch to tiles view'
-                    : 'Switch to list view'
+                    ? t('navbar.switchToTilesView')
+                    : t('navbar.switchToListView')
                 }
                 aria-haspopup="true"
-                onClick={onSwithView}
+                onClick={onSwitchView}
                 color="inherit"
               >
-                {view === 'list' && <BorderAllIcon />}
-                {view === 'tiles' && <ListIcon />}
-              </IconButton>
+                {view === 'list' && <GridViewIcon />}
+                {view === 'tiles' && <FormatListBulletedIcon />}
+              </Box>
             </Tooltip>
             <Popup />
+            <Box
+              component={IconButton}
+              size="large"
+              edge="end"
+              aria-label={
+                currentLang === 'en'
+                  ? t('navbar.switchToPolish')
+                  : t('navbar.switchToEnglish')
+              }
+              aria-haspopup="true"
+              onClick={switchLanguage}
+              color="inherit"
+            >
+              {currentLang === 'en' ? (
+                <Flag country={'GB'} />
+              ) : (
+                <Flag country={'PL'} />
+              )}
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>

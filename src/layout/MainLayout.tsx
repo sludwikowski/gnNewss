@@ -23,7 +23,7 @@ export default function MainLayout() {
       <Container sx={{ py: 12 }} maxWidth="lg">
         <Outlet />
       </Container>
-      <Footer description={'task'} title={'gnNews'} />
+      <Footer title={'gnNews'} />
     </div>
   )
 }

@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import { FlagIcon } from 'react-flag-kit'
+import { FlagIcon, FlagIconCode } from 'react-flag-kit'
 
 import { setCountry } from '../features/countriesSlice'
 import { RootState } from '../app/store'
@@ -63,7 +63,7 @@ export default function SideMenu() {
               href={`/country/${c.code}`}
             >
               <ListItemText primary={c.name} />
-              <FlagIcon code={c.code} />
+              <FlagIcon code={c.code as FlagIconCode} size={24} />
             </ListItemButton>
           </ListItem>
         ))}

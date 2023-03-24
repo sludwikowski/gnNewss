@@ -33,7 +33,8 @@ export default function Popup() {
   const popupContent = (
     <>
       <DialogContentText>
-        Największą trudność miałem z ...
+        Największą trudność miałem z opcją zliczania ilości artykułów
+        w stopce.
       </DialogContentText>
       <DialogContentText>
         Największą frajdę sprawiło mi szukanie rozwiązań napotykanych

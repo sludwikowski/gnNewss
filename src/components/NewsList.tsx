@@ -17,6 +17,19 @@ interface NewsListProps {
   news: NewsArticle[]
 }
 
+function formatPolishDateTime(dateStr: string) {
+  const date = new Date(dateStr)
+  const day = date.getDate()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+  return `${day < 10 ? '0' : ''}${day}.${
+    month < 10 ? '0' : ''
+  }${month}.${year} ${hours}:${minutes}:${seconds}`
+}
+
 export default function NewsList({ news }: NewsListProps) {
   const [page, setPage] = useState(1)
   const [selectedArticle, setSelectedArticle] =
@@ -59,7 +72,9 @@ export default function NewsList({ news }: NewsListProps) {
                     {article.title}
                   </Box>
                 }
-                secondary={`${article.source.name}, ${article.publishedAt}`}
+                secondary={`${
+                  article.source.name
+                }, ${formatPolishDateTime(article.publishedAt)}`}
               />
               <ArticlePopup
                 visible={selectedArticle !== null}

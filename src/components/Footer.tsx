@@ -67,7 +67,7 @@ export default function Footer(props: FooterProps) {
           color="text.secondary"
           gutterBottom
         >
-          Current time: {currentTime.toLocaleTimeString()}
+          Current time: {currentTime.toLocaleTimeString('Pl-pl')}
         </Typography>
       </Container>
     </Box>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -17,8 +17,8 @@ import {
 import NotificationsIcon from '@mui/icons-material/Notifications'
 
 export default function Popup() {
-  const [open, setOpen] = React.useState(false)
-  const [badgeContent, setBadgeContent] = React.useState(1)
+  const [open, setOpen] = useState(false)
+  const [badgeContent, setBadgeContent] = useState(1)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
   const { t } = useTranslation()

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
 import {
   Button,
   Badge,
@@ -16,14 +15,15 @@ import {
 } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 
-export default function Popup() {
+const Popup = () => {
   const [open, setOpen] = useState(false)
   const [badgeContent, setBadgeContent] = useState(1)
-  const theme = useTheme()
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
   const { t } = useTranslation()
 
-  const handleClickOpen = () => {
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+
+  const handleOpen = () => {
     setOpen(true)
     setBadgeContent(0)
   }
@@ -41,12 +41,12 @@ export default function Popup() {
 
   return (
     <div>
-      <Tooltip title={'Popup'}>
+      <Tooltip title="Popup">
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show notification"
           color="inherit"
-          onClick={handleClickOpen}
+          onClick={handleOpen}
         >
           <Badge badgeContent={badgeContent} color="error">
             <NotificationsIcon />
@@ -65,8 +65,8 @@ export default function Popup() {
         <DialogContent>{popupContent}</DialogContent>
         <DialogActions>
           <Button
-            variant={'contained'}
-            color={'secondary'}
+            variant="contained"
+            color="secondary"
             onClick={handleClose}
           >
             {t('popup.button')}
@@ -76,3 +76,5 @@ export default function Popup() {
     </div>
   )
 }
+
+export default Popup

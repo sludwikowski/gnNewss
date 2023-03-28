@@ -7,17 +7,20 @@ import {
   Link,
   Typography,
 } from '@mui/material'
-
 import { useTranslation } from 'react-i18next'
 
 import { PopupProps } from '../typings'
+
 export default function ArticlePopup({
   visible,
   onClose,
   article,
 }: PopupProps) {
   const { t } = useTranslation()
-  if (!article) return null
+
+  if (!article) {
+    return null
+  }
 
   const { title, author, url, source, description } = article
 

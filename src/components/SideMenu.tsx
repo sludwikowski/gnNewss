@@ -1,21 +1,28 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Drawer, IconButton, Stack, Tooltip } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+
 import SideMenuList from './SideMenuList'
+
 import { RootState } from '../app/store'
 import { setCountry } from '../features/countriesSlice'
 
-export default function SideMenu() {
-  const [state, setState] = React.useState({
-    left: false,
-  })
+const SideMenu = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const dispatch = useDispatch()
+
   const countries = useSelector(
     (state: RootState) => state.countries.countries
   )
+
+  const { i18n } = useTranslation()
+
+  const handleCountryClick = (code: string) => {
+    dispatch(setCountry(code))
+  }
 
   const toggleDrawer =
     (open: boolean) =>
@@ -27,17 +34,11 @@ export default function SideMenu() {
       ) {
         return
       }
-      setState({ ...state, left: open })
+      setIsDrawerOpen(open)
     }
 
-  const handleCountryClick = (code: string) => {
-    dispatch(setCountry(code))
-  }
-
-  const { i18n } = useTranslation()
-
   return (
-    <React.Fragment>
+    <>
       <Stack direction="row" spacing={2}>
         <Tooltip title={'Countries'}>
           <IconButton
@@ -54,7 +55,7 @@ export default function SideMenu() {
       </Stack>
       <Drawer
         anchor="left"
-        open={state.left}
+        open={isDrawerOpen}
         onClose={toggleDrawer(false)}
       >
         <SideMenuList
@@ -63,6 +64,8 @@ export default function SideMenu() {
           i18n={i18n}
         />
       </Drawer>
-    </React.Fragment>
+    </>
   )
 }
+
+export default SideMenu

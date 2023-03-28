@@ -1,3 +1,66 @@
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+  or
+  ```sh
+  npm install -g pnpm
+  ```
+
+### Installation
+
+1. Get a free API Key at [News API](https://newsapi.org/s/poland-news-api)
+2. Clone the repo
+   ```sh
+     git clone git@github.com:sludwikowski/gnNewss.git
+   ```
+3. Install NPM packages
+
+   ```sh
+   npm install
+   ```
+
+   or
+
+   ```sh
+   pnpm install
+   ```
+
+4. Enter your API in `.env`
+   ```js
+   VITE_APP_KEY = 'YOUR_API_KEY'
+   ```
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+- [x] Create Layout
+  - [x] Adding Navbar
+    - [x] Adding Application name
+    - [x] Adding a toggle button for switching between list and grid view in the application
+    - [x] Adding Popup
+  - [x] Adding SideMenu
+    - [x] Adding a list of countries
+    - [x] Adding a flag to the view
+  - [x] Add MainContent
+    - [x] Adding a list or tile view for news articles
+    - [x] Adding a popup with its content, as well as the author and the URL of the source from which the news was fetched.
+  - [x] Add Footer
+- [x] Fetch News from NewsAPi
+- [x] Adding a comment section
+- [x] Adding a ReduxTookit
+- [x] Refactoring application
+- [ ] Adding a tests
+
 # gnNews - gnStudio React.js developer challenge
 
 Witaj, jeżeli znalazłeś się w tym miejscu to najprawdopodobniej chcesz dołączyć do niesamowitego teamu tworzącego rozwiązania szyte na miarę i chcesz w końcu realizować projekty, które nie będą nudne, będą sprawiały Ci frajdę i będą napawały Cię dumą kiedy tylko o nich pomyślisz.

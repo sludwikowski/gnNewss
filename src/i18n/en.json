@@ -8,6 +8,10 @@
   "header": {
     "subtitle": "Read the latest news from gnNews!"
   },
+  "news": {
+    "source": "Unknown source",
+    "description": "No description available"
+  },
   "articlePopup":  {
     "author": "Author",
     "unknown": "Unknown",

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import {
   Card,
   CardContent,
@@ -7,6 +9,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
+
 import { TileCardProps } from '../typings'
 import ArticlePopup from './ArticlePopup'
 
@@ -31,6 +34,8 @@ export default function NewsTileCard({ news }: TileCardProps) {
       year: 'numeric',
     }
   )
+
+  const { t, i18n } = useTranslation()
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={news.url}>
@@ -64,7 +69,7 @@ export default function NewsTileCard({ news }: TileCardProps) {
             }
             subheader={
               <Typography variant="subtitle2" color="success">
-                {news.source?.name}
+                {news.source?.name || t('news.source')}
               </Typography>
             }
           />
@@ -73,7 +78,7 @@ export default function NewsTileCard({ news }: TileCardProps) {
             color="textSecondary"
             component="p"
           >
-            {news.description}
+            {news.description || t('news.description')}
           </Typography>
         </CardContent>
         <Typography

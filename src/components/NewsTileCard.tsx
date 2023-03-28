@@ -1,28 +1,17 @@
-import { useMemo, useState } from 'react'
-
+import { useState } from 'react'
 import {
   Card,
-  CardMedia,
   CardContent,
   CardHeader,
+  CardMedia,
   Grid,
   Typography,
 } from '@mui/material'
-
 import { TileCardProps } from '../typings'
 import ArticlePopup from './ArticlePopup'
 
 export default function NewsTileCard({ news }: TileCardProps) {
-  const { title, description, url, urlToImage, publishedAt, source } =
-    news
-
   const [isPopupOpen, setIsPopupOpen] = useState(false)
-
-  const publishedDate = useMemo(() => {
-    return `${new Date(publishedAt).toLocaleTimeString(
-      'pl-PL'
-    )}, ${new Date(publishedAt).toLocaleDateString('pl-PL')}`
-  }, [publishedAt])
 
   const handleCardClick = () => {
     setIsPopupOpen(true)
@@ -32,8 +21,19 @@ export default function NewsTileCard({ news }: TileCardProps) {
     setIsPopupOpen(false)
   }
 
+  const publishedDate = new Date(news.publishedAt).toLocaleString(
+    'pl-PL',
+    {
+      hour: '2-digit',
+      minute: '2-digit',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    }
+  )
+
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={url}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={news.url}>
       <Card
         sx={{
           height: '100%',
@@ -46,25 +46,25 @@ export default function NewsTileCard({ news }: TileCardProps) {
         <CardMedia
           sx={{ maxHeight: '200px', objectFit: 'cover' }}
           component="img"
-          image={urlToImage || 'https://source.unsplash.com/random'}
+          image={
+            news.urlToImage || 'https://source.unsplash.com/random'
+          }
           alt="image"
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <CardHeader
-            variant="h5"
-            component="h2"
             title={
               <Typography
                 variant="h5"
                 fontWeight={'bold'}
                 color="secondary"
               >
-                {title}
+                {news.title}
               </Typography>
             }
             subheader={
               <Typography variant="subtitle2" color="success">
-                {source.name}
+                {news.source?.name}
               </Typography>
             }
           />
@@ -73,7 +73,7 @@ export default function NewsTileCard({ news }: TileCardProps) {
             color="textSecondary"
             component="p"
           >
-            {description}
+            {news.description}
           </Typography>
         </CardContent>
         <Typography

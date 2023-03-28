@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next' // import useTranslation
+import { useTranslation } from 'react-i18next'
 
 import {
   AppBar,
@@ -33,13 +33,57 @@ export default function Navbar() {
   }, [currentLang])
 
   const switchLanguage = () => {
-    setCurrentLang((prevLang) => (prevLang === 'en' ? 'pl' : 'en'))
-    i18n.changeLanguage(currentLang === 'en' ? 'pl' : 'en')
+    const newLang = currentLang === 'en' ? 'pl' : 'en'
+    setCurrentLang(newLang)
+    i18n.changeLanguage(newLang)
   }
 
   const onSwitchView = () => {
     dispatch(setView(view === 'list' ? 'tiles' : 'list'))
   }
+
+  const renderViewToggleButton = () => (
+    <Tooltip title={t('Switch View')}>
+      <Box
+        component={IconButton}
+        size="large"
+        edge="end"
+        aria-label={
+          view === 'list'
+            ? t('navbar.switchToTilesView')
+            : t('navbar.switchToListView')
+        }
+        aria-haspopup="true"
+        onClick={onSwitchView}
+        color="inherit"
+      >
+        {view === 'list' && <GridViewIcon />}
+        {view === 'tiles' && <FormatListBulletedIcon />}
+      </Box>
+    </Tooltip>
+  )
+
+  const renderLanguageToggleButton = () => (
+    <Box
+      component={IconButton}
+      size="large"
+      edge="end"
+      aria-label={
+        currentLang === 'en'
+          ? t('navbar.switchToPolish')
+          : t('navbar.switchToEnglish')
+      }
+      aria-haspopup="true"
+      onClick={switchLanguage}
+      color="inherit"
+    >
+      {currentLang === 'en' ? (
+        <Flag country={'PL'} />
+      ) : (
+        <Flag country={'GB'} />
+      )}
+    </Box>
+  )
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -57,44 +101,9 @@ export default function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: 'flex' }}>
-            <Tooltip title={t('Switch View')}>
-              <Box
-                component={IconButton}
-                size="large"
-                edge="end"
-                aria-label={
-                  view === 'list'
-                    ? t('navbar.switchToTilesView')
-                    : t('navbar.switchToListView')
-                }
-                aria-haspopup="true"
-                onClick={onSwitchView}
-                color="inherit"
-              >
-                {view === 'list' && <GridViewIcon />}
-                {view === 'tiles' && <FormatListBulletedIcon />}
-              </Box>
-            </Tooltip>
+            {renderViewToggleButton()}
             <Popup />
-            <Box
-              component={IconButton}
-              size="large"
-              edge="end"
-              aria-label={
-                currentLang === 'en'
-                  ? t('navbar.switchToPolish')
-                  : t('navbar.switchToEnglish')
-              }
-              aria-haspopup="true"
-              onClick={switchLanguage}
-              color="inherit"
-            >
-              {currentLang === 'en' ? (
-                <Flag country={'PL'} />
-              ) : (
-                <Flag country={'GB'} />
-              )}
-            </Box>
+            {renderLanguageToggleButton()}
           </Box>
         </Toolbar>
       </AppBar>

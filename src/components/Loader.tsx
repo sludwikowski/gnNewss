@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from '@mui/material'
+import { Box, CircularProgress, Typography } from '@mui/material'
 
 export default function Loader() {
   return (
@@ -16,14 +16,13 @@ export default function Loader() {
         backgroundColor: 'white',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <CircularProgress color={'success'} size={70} />
+      <Box sx={{ textAlign: 'center' }}>
+        <CircularProgress color="primary" size={70} />
+        <Box mt={2}>
+          <Typography variant="h5" color="text.primary">
+            Loading...
+          </Typography>
+        </Box>
       </Box>
     </Box>
   )

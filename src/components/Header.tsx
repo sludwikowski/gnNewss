@@ -9,7 +9,7 @@ export default function Header() {
     <Container
       disableGutters
       maxWidth="sm"
-      component="main"
+      component="header"
       sx={{ pt: 18 }}
     >
       <Typography

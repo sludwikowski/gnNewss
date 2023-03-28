@@ -16,23 +16,35 @@ import { NewsArticle, NewsProps } from '../typings'
 import { formatPolishDateTime } from '../helpers/formatPolishDateTime'
 
 export default function NewsList({ news }: NewsProps) {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState<number>(1)
   const [selectedArticle, setSelectedArticle] =
     useState<NewsArticle | null>(null)
 
   const articlesPerPage = 10
-  const numPages = Math.ceil(news.length / articlesPerPage)
+  const numPages: number = Math.ceil(news.length / articlesPerPage)
+
   const handleArticleClick = (article: NewsArticle) =>
     setSelectedArticle(article)
+
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
     setPage(value)
   }
-  if (!news) {
-    return null
+
+  if (!news || news.length === 0) {
+    return (
+      <Typography
+        variant="body1"
+        color="textSecondary"
+        align="center"
+      >
+        No news to show
+      </Typography>
+    )
   }
+
   return (
     <>
       <List>
@@ -57,19 +69,22 @@ export default function NewsList({ news }: NewsProps) {
                   article.source.name
                 }, ${formatPolishDateTime(article.publishedAt)}`}
               />
-              <ArticlePopup
-                visible={selectedArticle !== null}
-                onClose={() => setSelectedArticle(null)}
-                article={selectedArticle}
-              />
             </ListItem>
           ))}
       </List>
-      <Pagination
-        count={numPages}
-        page={page}
-        onChange={handlePageChange}
+      <ArticlePopup
+        visible={selectedArticle !== null}
+        onClose={() => setSelectedArticle(null)}
+        article={selectedArticle}
       />
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Pagination
+          count={numPages}
+          page={page}
+          onChange={handlePageChange}
+          size="large"
+        />
+      </Box>
     </>
   )
 }

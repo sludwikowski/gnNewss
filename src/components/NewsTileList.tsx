@@ -1,10 +1,38 @@
 import React, { useState } from 'react'
-
-import { Grid, Pagination } from '@mui/material'
-
+import { Box, Grid, Pagination } from '@mui/material'
 import { NewsArticle, NewsProps } from '../typings'
-
 import NewsTileCard from './NewsTileCard'
+
+interface PaginationProps {
+  page: number
+  articlesPerPage: number
+  totalArticles: number
+  onChangePage: (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => void
+}
+
+function PaginationBar({
+  page,
+  articlesPerPage,
+  totalArticles,
+  onChangePage,
+}: PaginationProps) {
+  const pageCount = Math.ceil(totalArticles / articlesPerPage)
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Pagination
+        count={pageCount}
+        page={page}
+        onChange={onChangePage}
+        color="primary"
+        size="large"
+        sx={{ mt: 4 }}
+      />
+    </Box>
+  )
+}
 
 export default function NewsTileList({ news }: NewsProps) {
   const [page, setPage] = useState(1)
@@ -28,13 +56,11 @@ export default function NewsTileList({ news }: NewsProps) {
           <NewsTileCard news={article} key={article.title} />
         ))}
       </Grid>
-      <Pagination
-        count={Math.ceil(news.length / articlesPerPage)}
+      <PaginationBar
         page={page}
-        onChange={handleChangePage}
-        color="primary"
-        size="large"
-        sx={{ mt: 4 }}
+        articlesPerPage={articlesPerPage}
+        totalArticles={news.length}
+        onChangePage={handleChangePage}
       />
     </>
   )

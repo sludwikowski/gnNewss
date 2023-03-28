@@ -35,7 +35,7 @@ export default function NewsTileCard({ news }: TileCardProps) {
     }
   )
 
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={news.url}>

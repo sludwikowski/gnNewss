@@ -1,7 +1,7 @@
 {
   "popup": {
     "title": "Fun and Problems",
-    "message1": "The biggest difficulty was with the option of counting the number of articles in the footer.",
+    "message1": "I had the most difficulty with writing tests for the application and finding typos.",
     "message2": "The most fun was finding solutions to encountered problems.",
     "button": "OK"
   },

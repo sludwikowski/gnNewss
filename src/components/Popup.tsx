@@ -16,12 +16,11 @@ import {
 import NotificationsIcon from '@mui/icons-material/Notifications'
 
 const Popup = () => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [badgeContent, setBadgeContent] = useState(1)
-  const { t } = useTranslation()
-
   const theme = useTheme()
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const handleOpen = () => {
     setOpen(true)
@@ -32,7 +31,7 @@ const Popup = () => {
     setOpen(false)
   }
 
-  const popupContent = (
+  const dialogContent = (
     <>
       <DialogContentText>{t('popup.message1')}</DialogContentText>
       <DialogContentText>{t('popup.message2')}</DialogContentText>
@@ -40,11 +39,13 @@ const Popup = () => {
   )
 
   return (
-    <div>
-      <Tooltip title="Popup">
+    <>
+      <Tooltip title={t('popup.tooltip')}>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore*/}
         <IconButton
           size="large"
-          aria-label="show notification"
+          aria-label={t('popup.iconButtonLabel')}
           color="inherit"
           onClick={handleOpen}
         >
@@ -54,7 +55,7 @@ const Popup = () => {
         </IconButton>
       </Tooltip>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={isMobile}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
@@ -62,7 +63,7 @@ const Popup = () => {
         <DialogTitle id="responsive-dialog-title">
           {t('popup.title')}
         </DialogTitle>
-        <DialogContent>{popupContent}</DialogContent>
+        <DialogContent>{dialogContent}</DialogContent>
         <DialogActions>
           <Button
             variant="contained"
@@ -73,7 +74,7 @@ const Popup = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   )
 }
 

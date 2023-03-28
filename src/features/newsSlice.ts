@@ -48,28 +48,25 @@ const newsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      (action) =>
-        action.type.endsWith('/pending') ||
-        action.type.endsWith('/fulfilled') ||
-        action.type.endsWith('/rejected'),
-      (state, action) => {
-        state.isLoading = action.meta.requestStatus === 'pending'
-        state.news = action.payload ?? state.news
-        state.error =
-          action.meta.requestStatus === 'rejected'
-            ? (action.payload as string)
-            : null
-      }
-    )
+    builder.addCase(fetchNewsThunk.pending, (state) => {
+      state.isLoading = true
+    })
+    builder.addCase(fetchNewsThunk.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.news = action.payload
+      state.error = null
+    })
+    builder.addCase(fetchNewsThunk.rejected, (state, action) => {
+      state.isLoading = false
+      state.news = []
+      state.error = action.payload as string
+    })
   },
 })
 
-// eslint-disable-next-line import/no-unused-modules
 export const { setView, setArticleCount } = newsSlice.actions
 export default newsSlice.reducer
 
 export const selectNews = (state: RootState) => state.news.news
-
 export const selectIsLoadingNews = (state: RootState) =>
   state.news.isLoading

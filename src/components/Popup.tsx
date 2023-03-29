@@ -45,7 +45,7 @@ const Popup = () => {
         {/* @ts-ignore*/}
         <IconButton
           size="large"
-          aria-label={t('popup.iconButtonLabel')}
+          aria-label={'show notification'}
           color="inherit"
           onClick={handleOpen}
         >

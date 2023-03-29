@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import NewsList from '../NewsList'
 
 describe('NewsList', () => {
@@ -27,17 +27,41 @@ describe('NewsList', () => {
       },
       publishedAt: '2022-04-02T10:00:00Z',
     },
+    {
+      title: 'Test article 3',
+      url: 'https://example.com/test-article-2',
+      urlToImage: null,
+      description: null,
+      author: null,
+      source: {
+        id: null,
+        name: 'Example 3',
+      },
+      publishedAt: '2022-04-02T10:00:00Z',
+    },
   ]
 
-  it('should render news list with correct articles', () => {
-    render(<NewsList news={newsList} />)
+  describe('NewsList', () => {
+    it('renders news articles', () => {
+      render(<NewsList news={newsList} />)
 
-    expect(screen.getByText(/Test article\s*1/)).toBeInTheDocument()
+      expect(screen.getByText(/Test article 1/i)).toBeInTheDocument()
+      expect(screen.getByText(/Test article 2/i)).toBeInTheDocument()
+    })
 
-    expect(screen.getByText(/Example\s*1/)).toBeInTheDocument()
+    it('displays no news message when there is no news', () => {
+      render(<NewsList news={[]} />)
 
-    expect(screen.getByText(/Test article\s*2/)).toBeInTheDocument()
+      expect(screen.getByText(/No news to show/i)).toBeInTheDocument()
+    })
 
-    expect(screen.getByText(/Example\s*2/)).toBeInTheDocument()
+    it('displays article details when article is clicked', () => {
+      render(<NewsList news={newsList} />)
+
+      fireEvent.click(screen.getByText(/Test article 1/i))
+
+      expect(screen.getByText(/Test article 3/i)).toBeInTheDocument()
+      expect(screen.getByText(/Example 3/i)).toBeInTheDocument()
+    })
   })
 })

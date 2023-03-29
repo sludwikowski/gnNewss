@@ -12,7 +12,7 @@ describe('Popup', () => {
   test('should display a popup when the notification icon is clicked', () => {
     render(<Popup />)
     const notificationIcon = screen.getByLabelText(
-      'show 17 new notifications'
+      'show notification'
     )
     fireEvent.click(notificationIcon)
     const popupTitle = screen.getByRole('heading')
@@ -22,7 +22,7 @@ describe('Popup', () => {
   test('should close the dialog when the button is clicked', () => {
     render(<Popup />)
     const notificationIcon = screen.getByLabelText(
-      'show 17 new notifications'
+      'show notification'
     )
     fireEvent.click(notificationIcon)
     const closeButton = screen.getByRole('button')

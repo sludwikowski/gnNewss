@@ -56,7 +56,6 @@ This is an example of how to list things you need to use the software and how to
     - [x] Adding a popup with its content, as well as the author and the URL of the source from which the news was fetched.
   - [x] Add Footer
 - [x] Fetch News from NewsAPi
-- [x] Adding a comment section
 - [x] Adding a ReduxTookit
 - [x] Refactoring application
 - [ ] Adding a tests

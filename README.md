@@ -54,11 +54,11 @@ This is an example of how to list things you need to use the software and how to
   - [x] Add MainContent
     - [x] Adding a list or tile view for news articles
     - [x] Adding a popup with its content, as well as the author and the URL of the source from which the news was fetched.
-  - [x] Add Footer
+  - [x] Adding Footer
 - [x] Fetch News from NewsAPi
-- [x] Adding a ReduxTookit
+- [x] Adding a ReduxToolkit
 - [x] Refactoring application
-- [ ] Adding a tests
+- [x] Adding a tests
 
 # gnNews - gnStudio React.js developer challenge
 

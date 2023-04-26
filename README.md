@@ -104,8 +104,8 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 5. Enter your API in `.env`
-   ```js
-   VITE_APP_KEY = 'YOUR_API_KEY'
+   ```sh
+   npm run dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

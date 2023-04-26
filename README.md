@@ -158,7 +158,7 @@ Don't forget to give the project a star! Thanks again!
 
 @sludwikowski - [@sludwikowski](https://www.linkedin.com/in/sludwikowski/) - sludwikowski.dev@gmail.com
 
-Project Link: [https://github.com/sludwikowski/personal-blog](https://github.com/sludwikowski/gnNewss)
+Project Link: [https://github.com/sludwikowski/gnNewss](https://github.com/sludwikowski/gnNewss)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -1,3 +1,66 @@
+<a name="readme-top"></a>
+
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="public/logo.png" alt="Logo" width="180" height="60">
+  </a>
+
+<h3 align="center">gnNews</h3>
+
+  <p align="center">
+    <strong>gnNews</strong> is an application that displays news.
+    <br />
+    <a href="https://github.com/sludwikowski/gnNewss"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/sludwikowski/gnNewss">View Demo</a>
+    ·
+    <a href="https://github.com/sludwikowski/gnNewss/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/sludwikowski/gnNewss/issues">Request Feature</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+[![gnNews][product-screenshot]](/public/wiev.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+- [![Vite][Vite]][Vite-url]
+- [![Typescript][Typescript]][Typescript-url]
+- [![MUI][MUI]][MUI-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- GETTING STARTED -->
 
 ## Getting Started
@@ -35,9 +98,17 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 4. Enter your API in `.env`
+
    ```js
    VITE_APP_KEY = 'YOUR_API_KEY'
    ```
+
+5. Enter your API in `.env`
+   ```js
+   VITE_APP_KEY = 'YOUR_API_KEY'
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 
@@ -60,36 +131,64 @@ This is an example of how to list things you need to use the software and how to
 - [x] Refactoring application
 - [x] Adding a tests
 
-# gnNews - gnStudio React.js developer challenge
+See the [open issues](hhttps://github.com/sludwikowski/gnNewss/issues) for a full list of proposed features (and known issues).
 
-Witaj, jeżeli znalazłeś się w tym miejscu to najprawdopodobniej chcesz dołączyć do niesamowitego teamu tworzącego rozwiązania szyte na miarę i chcesz w końcu realizować projekty, które nie będą nudne, będą sprawiały Ci frajdę i będą napawały Cię dumą kiedy tylko o nich pomyślisz.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Cóż, projekty są różne, więc może tak właśnie być, a może być zupełnie odwrotnie 😉 Możemy Ci jedynie zagwarantować, że nie będziesz się nudzić.
+<!-- CONTRIBUTING -->
 
-## O zadaniu
+## Contributing
 
-Abyśmy mogli bliżej poznać Twoje umiejętności techniczne, stopień zaangażowania oraz sposób myślenia, przygotowaliśmy dla Ciebie zadanie polegające na stworzeniu prostej aplikacji będącej "agregatorem newsów" szumnie nazwanej przez nas roboczo **gnNews**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-To na czym nam zależy to przede wszystkim czytelny kod, działająca aplikacja i UI, który nie wygląda jak konar ciosany tępym scyzorykiem (hint: pamiętaj o RWD, ale ciii, nie mów nikomu, że Ci podpowiedziałem 😉)
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-## Następne kroki
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- wykonaj forka tego repozytorium jako prywatne repo
-- postępuj z instrukcjami zawartymi w [opis-zadania.md](./opis-zadania.md)
-- rozwiąż zadanie najlepiej jak potrafisz
-- dodaj użytkownika [gn-studio-pl](https://github.com/gn-studio-pl) do repozytorium
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Uwagi
+<!-- CONTACT -->
 
-- aplikację wykonaj w oparciu o React.js, wykorzystanie TypeScript'u bedzie mile widziane i dodatkowo punktowane
-- wykorzystaj nastepujace biblioteki: Redux toolkit, react-test-lib. Może odbierzesz to jako wychodzenie z armatą na muchy ale korzystamy z nich w naszych projektach i chcemy wiedziec czy czujesz się w nich dobrze
-- nie musisz tworzyć całego UI samemu, możesz skorzystać z dowolnej biblioteki UI
-- nie ma tutaj limitu czasu (poza wyznaczonym deadlinem), ale zalecamy, abyś nie spędzał nad tym zadaniem więcej jak 12 godzin
-- staraj się napisać swój kod najlepiej jak potrafisz
-- otestowanie przynajmniej części aplikacji mile widziane 😉
+## Contact
 
-## Pytania?
+@sludwikowski - [@sludwikowski](https://www.linkedin.com/in/sludwikowski/) - sludwikowski.dev@gmail.com
 
-Jeżeli masz jakiekolwiek pytania co do wykonywanego zadania, bądź coś nie jest dla Ciebie jasne, albo masz trudności na którymś etapie, nie krępuj się - dzwoń, pisz - wyjaśnimy (chyba 😛)
+Project Link: [https://github.com/sludwikowski/personal-blog](https://github.com/sludwikowski/gnNewss)
 
-## Powodzenia!
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/sludwikowski/personal-blog/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/sludwikowski/personal-blog/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/sludwikowski/personal-blog/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/sludwikowski/personal-blog/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/sludwikowski/personal-blog/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/sludwikowski/
+[product-screenshot]: /public/wiev.png
+[Vite]: https://img.shields.io/badge/Vite-F1f1f1?style=for-the-badge&logo=Vite&
+[Vite-url]: https://vitejs.dev/
+[MUI]: https://img.shields.io/badge/MaterialUi-blue?style=for-the-badge
+[MUI-url]: https://mui.com/material-ui/getting-started/installation/
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[TypeScript]: https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[Sanity]: https://img.shields.io/badge/sanity-F79E97?style=for-the-badge&logo=sanity&logoColor=white
+[sanity-url]: https://sanity.io/
+[TailwindCSS]: https://img.shields.io/badge/tailwindcss-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white
+[tailwind-url]: https://tailwindcss.com/
+
+<!-- GETTING STARTED -->
